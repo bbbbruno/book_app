@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<p id="notice"><%= flash.notice %></p>
 
 <p>
   <strong><%= Book.human_attribute_name(:title) %>:</strong>
@@ -20,5 +20,5 @@
   <%= image_tag(@book.picture_url) if @book.picture.present? %>
 </p>
 
-<%= link_to t('button.edit'), edit_book_path(@book) %> |
-<%= link_to t('button.back'), books_path %>
+<%= link_to t('dictionary.button.edit'), edit_book_path(@book) %> |
+<%= link_to t('dictionary.button.back'), books_path %>

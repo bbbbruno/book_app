@@ -20,9 +20,9 @@
       <td><%= book.memo %></td>
       <td><%= book.author %></td>
       <td><%= book.picture %></td>
-      <td><%= link_to t('button.show'), book %></td>
-      <td><%= link_to t('button.edit'), edit_book_path(book) %></td>
-      <td><%= link_to t('button.destroy'), book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to t('dictionary.button.show'), book %></td>
+      <td><%= link_to t('dictionary.button.edit'), edit_book_path(book) %></td>
+      <td><%= link_to t('dictionary.button.destroy'), book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
     <% end %>
   </tbody>
@@ -30,4 +30,4 @@
 
 <br>
 
-<%= link_to t('button.new book'), new_book_path %>
+<%= link_to t('dictionary.button.new book'), new_book_path %>
