@@ -1,0 +1,31 @@
+@import "bootstrap";
+
+h1 {
+  margin-bottom: 1rem;
+}
+
+table {
+  word-break: break-all;
+  word-wrap: break-word;
+
+  th {
+    padding: 0.5rem;
+    font-size: 1.2rem;
+  }
+
+  td {
+    padding: 0.75rem 0.5rem !important;
+
+    &.link {
+      padding: 0.75rem 0.15rem !important;
+    }
+  }
+}
+
+.field_with_errors {
+  display: contents;
+
+  input {
+    @extend .is-invalid;
+  }
+}

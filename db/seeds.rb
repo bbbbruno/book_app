@@ -22,7 +22,7 @@ end
 
 96.times do |n|
   title = Faker::Lorem.sentence(word_count: 1)
-  memo = Faker::Lorem.sentence(word_count: 10)
+  memo = Faker::Lorem.sentence(word_count: 5)
   author = Faker::Name.name
   Book.create!(
     title: title,
