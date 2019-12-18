@@ -1,0 +1,8 @@
+ja:
+  profiles:
+    index:
+      title: ユーザー一覧
+    show:
+      title: プロフィール
+    edit:
+      title: プロフィール編集

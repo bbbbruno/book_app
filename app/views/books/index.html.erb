@@ -35,4 +35,4 @@
 <%= link_to t('dictionary.button.new book'), new_book_path, class: 'btn btn-primary mb-3' %>
 
 <%= paginate @books %>
-<%= page_entries_info @books %>
+<div class="paginate-info"><%= page_entries_info @books %></div>

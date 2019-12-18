@@ -30,3 +30,18 @@ end
     author: author,
   )
 end
+
+[
+  ['bbbbruno', 'bbbbruno@gmail.com', 'simsimsim', 'simsimsim'],
+  ['ichigo', 'ichigo@gmail.com', 'ichigo', 'ichigo'],
+  ['macmac', 'macmac@gmail.com', 'macmac', 'macmac'],
+  ['strongzero', 'strong@gmail.com', 'strong', 'strong']
+].each do |username, email, password, password_confirmation|
+  User.create!(
+    username: username,
+    email: email,
+    password: password,
+    password_confirmation: password_confirmation,
+    confirmed_at: Time.now,
+  )
+end

@@ -1,0 +1,28 @@
+<h1><%= t '.title' %></h1>
+
+<h2 class="mb-4"><%= @profile.user.username %></h2>
+
+<p>
+  <strong><%= Profile.human_attribute_name(:name) %>:</strong>
+  <%= @profile.name %>
+</p>
+
+<p>
+  <strong><%= Profile.human_attribute_name(:zipcode) %>:</strong>
+  <%= @profile.zipcode %>
+</p>
+
+<p>
+  <strong><%= Profile.human_attribute_name(:address) %>:</strong>
+  <%= @profile.address %>
+</p>
+
+<p>
+  <strong><%= Profile.human_attribute_name(:self_introduction) %>:</strong><br>
+  <%= @profile.self_introduction %>
+</p>
+
+<% if current_user.id == @profile.user.id %>
+<%= link_to t('dictionary.button.edit'), edit_profile_path(current_user) %> |
+<% end %>
+<%= link_to t('dictionary.button.back'), profiles_path %>
