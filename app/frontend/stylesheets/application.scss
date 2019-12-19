@@ -18,6 +18,10 @@ table {
 
     &.link {
       padding: 0.75rem 0.15rem !important;
+
+      &.home {
+        padding: 0.75rem 0.05rem !important;
+      }
     }
   }
 }

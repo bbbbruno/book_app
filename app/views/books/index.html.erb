@@ -1,4 +1,7 @@
-<h1><%= t '.title'%></h1>
+<h1>
+  <%= image_tag @user.profile.profile_avatar(:sm), class: 'mr-2', style: 'border-radius: 50%;' %>
+  <%= t '.title', user: @user.username %>
+</h1>
 
 <div class="table-responsive-md">
   <table class="table table-hover">
@@ -18,21 +21,27 @@
           <td><%= book.title %></td>
           <td><%= book.memo %></td>
           <td><%= book.author %></td>
-          <td><%= book.picture %></td>
+          <td><%= link_to t('dictionary.button.link'), url_for(book.picture) if book.picture.attached? %></td>
           <td class="link">
-            <%= link_to t('dictionary.button.show'), book %></td>
-          <td class="link"><%= link_to t('dictionary.button.edit'), edit_book_path(book) %></td>
-          <td class="link">
-            <%= link_to t('dictionary.button.destroy'), book, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to t('dictionary.button.show'), user_book_path(@user, book) %>
           </td>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+          <% if current_user?(@user) %>
+            <td class="link">
+              <%= link_to t('dictionary.button.edit'), edit_user_book_path(@user, book) %>
+            </td>
+            <td class="link">
+              <%= link_to t('dictionary.button.destroy'), user_book_path(@user, book), method: :delete, data: { confirm: 'Are you sure?' } %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
 
-<%= link_to t('dictionary.button.new book'), new_book_path, class: 'btn btn-primary mb-3' %>
+<% if current_user?(@user) %>
+  <%= link_to t('dictionary.button.new book'), new_user_book_path, class: 'btn btn-primary mb-3' %>
+<% end %>
 
 <%= paginate @books %>
 <div class="paginate-info"><%= page_entries_info @books %></div>

@@ -1,0 +1,4 @@
+en:
+  profiles:
+    alert:
+      authenticate: Cannot edit other user's profile.

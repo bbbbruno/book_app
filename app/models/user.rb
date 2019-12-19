@@ -1,12 +1,26 @@
 # frozen_string_literal: true
 
+require 'open-uri'
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :omniauthable, omniauth_providers: %i[github]
 
+  scope :recent, -> { order(created_at: :desc) }
+
   has_one :profile, dependent: :destroy
   after_create { self.create_profile! }
+
+  has_many :books, dependent: :destroy
+
+  has_many :active_follows, class_name: 'Follow',
+                                  foreign_key: 'following_id',
+                                  dependent: :destroy
+  has_many :followings, through: :active_follows, source: :followed
+  has_many :passive_follows, class_name: 'Follow',
+                                   foreign_key: 'followed_id',
+                                   dependent: :destroy
+  has_many :followers, through: :passive_follows, source: :following
 
   validates :username, presence: true, uniqueness: true, length: { maximum: 10 }, format: { with: /\A[\w@-]*[A-Za-z][\w@-]*\z/, message: 'に使える文字は半角英数字と@-のみです。必ず英字を１文字以上入力してください。' }
 
@@ -30,9 +44,19 @@ class User < ApplicationRecord
   end
 
   def set_avatar(auth)
-    image_url = auth.info.image
-    uri = URI.parse(image_url)
-    image = uri.open
-    profile.avatar.attach(io: image, filename: "#{self.username}_avatar.png", content_type: 'image/png')
+    file = open(auth.info.image)
+    profile.avatar.attach(io: file, filename: "#{self.username}_avatar.png", content_type: 'image/png')
+  end
+
+  def follow!(other_user)
+    active_follows.create!(followed_id: other_user.id)
+  end
+
+  def unfollow!(other_user)
+    active_follows.find_by(followed_id: other_user.id).destroy!
+  end
+
+  def following?(other_user)
+    followings.include?(other_user)
   end
 end

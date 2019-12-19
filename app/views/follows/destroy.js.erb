@@ -1,0 +1,2 @@
+$("#follow_form").html("<%= j(render 'profiles/follow', user: @user) %>");
+$("#followers").html('<%= link_to count_followers(@user), followers_user_path(@user), class: 'mr-2' %>');

@@ -1,14 +1,31 @@
 <h1><%= t '.title' %></h1>
 
-<h2><%= @profile.user.username %></h2>
+<h2 class="d-flex justify-content-between align-items-center mb-0">
+  <p class="mb-0">
+    <%= image_tag @profile.profile_avatar(:md), style: 'border-radius: 50%;' %>
+    <span class="ml-2"><%= @user.username %></span>
+  </p>
+  <%= link_to t('.show_books'), user_books_path(@user) %>
+</h2>
+<div class="follow d-flex justify-content-start align-items-center mt-3">
+  <div class="links">
+    <span id="followings"><%= link_to count_followings(@user), followings_user_path(@user), class: 'mr-2' %></span>
+    <span id="followers"><%= link_to count_followers(@user), followers_user_path(@user) %></span>
+  </div>
+
+  <% unless current_user?(@user) %>
+    <div id="follow_form" class="ml-3">
+      <% if current_user.following?(@user) %>
+        <%= render 'unfollow', user: @user %>
+      <% else %>
+        <%= render 'follow', user: @user %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
 
 <table class="table table-bordered mb-4">
   <tbody>
-    <tr>
-      <th><%= Profile.human_attribute_name(:avatar) %></th>
-      <td><%= image_tag @profile.profile_avatar(:md) %></td>
-    </tr>
-
     <tr>
       <th><%= Profile.human_attribute_name(:name) %></th>
       <td><%= @profile.name %></td>
@@ -25,13 +42,14 @@
     </tr>
 
     <tr>
-      <th><%= Profile.human_attribute_name(:self_introduction) %></th><br>
+      <th><%= Profile.human_attribute_name(:self_introduction) %></th>
+      <br>
       <td><%= simple_format h @profile.self_introduction %></td>
     </tr>
   </tbody>
 </table>
 
-<% if current_user.id == @profile.user.id %>
+<% if current_user?(@profile.user) %>
   <%= link_to t('dictionary.button.edit'), edit_profile_path(current_user) %> |
 <% end %>
-<%= link_to t('dictionary.button.back'), profiles_path %>
+<%= link_to t('dictionary.button.back'), users_path %>
