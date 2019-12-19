@@ -44,9 +44,10 @@ gem 'faker'
 gem 'bootstrap'
 gem 'jquery-rails'
 
-# device
 gem 'devise'
 gem 'devise-i18n'
+
+gem 'omniauth-github'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -61,7 +62,6 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 
-  # letter_opener_web
   gem 'letter_opener_web'
 end
 

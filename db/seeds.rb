@@ -32,7 +32,7 @@ end
 end
 
 [
-  ['bbbbruno', 'bbbbruno@gmail.com', 'simsimsim', 'simsimsim'],
+  ['bbbbruno69', 'bbbbruno@gmail.com', 'simsimsim', 'simsimsim'],
   ['ichigo', 'ichigo@gmail.com', 'ichigo', 'ichigo'],
   ['macmac', 'macmac@gmail.com', 'macmac', 'macmac'],
   ['strongzero', 'strong@gmail.com', 'strong', 'strong']
@@ -43,5 +43,20 @@ end
     password: password,
     password_confirmation: password_confirmation,
     confirmed_at: Time.now,
+    uid: User.create_unique_string,
   )
 end
+
+User.find_by(username: 'strongzero').profile.update(
+  name: 'ストロングマン',
+  zipcode: '933-0114',
+  address: '富山県高岡市伏木古府１−７−４４',
+  self_introduction: <<~TEXT
+  やあ！僕の名前はストロングマン！
+  今は北陸の寒い街で活動中だよ！
+  寒すぎて今にも凍え死にそうだけどね！
+  ハハ！！
+  でも、ストロングゼロさえ飲めばへっちゃらさ！
+  さあ！君も一緒に飲んでみないかい？？
+  TEXT
+)
