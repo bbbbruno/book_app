@@ -35,16 +35,12 @@ gem 'awesome_print'
 
 gem 'carrierwave'
 
-# rails-i18n
 gem 'rails-i18n'
 
-# kaminari
 gem 'kaminari'
 
-# faker
 gem 'faker'
 
-# bootstrap
 gem 'bootstrap'
 
 group :development, :test do
