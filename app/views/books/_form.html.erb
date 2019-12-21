@@ -1,7 +1,7 @@
 <%= form_with(model: book, local: true) do |form| %>
 <% if book.errors.any? %>
-<div id="error_explanation">
-  <h2><%= pluralize(book.errors.count, "error") %> prohibited this book from being saved:</h2>
+<div id="error_explanation" class="alert alert-danger">
+  <p><%= pluralize(book.errors.count, "error") %> prohibited this book from being saved:</p>
 
   <ul>
     <% book.errors.full_messages.each do |message| %>
@@ -11,27 +11,35 @@
 </div>
 <% end %>
 
-<div class="field">
-  <%= form.label :title %>
-  <%= form.text_field :title %>
+<div class="form-group row">
+  <%= form.label :title, class: 'col-md-2 col-form-label' %>
+  <div class="col-md-10">
+    <%= form.text_field :title, class: 'form-control' %>
+  </div>
 </div>
 
-<div class="field">
-  <%= form.label :memo %>
-  <%= form.text_area :memo %>
+<div class="form-group row">
+  <%= form.label :memo, class: 'col-md-2 col-form-label' %>
+  <div class="col-md-10">
+    <%= form.text_area :memo, class: 'form-control', rows: 5 %>
+  </div>
 </div>
 
-<div class="field">
-  <%= form.label :author %>
-  <%= form.text_field :author %>
+<div class="form-group row">
+  <%= form.label :author, class: 'col-md-2 col-form-label' %>
+  <div class="col-md-10">
+    <%= form.text_field :author, class: 'form-control' %>
+  </div>
 </div>
 
-<div class="field">
-  <%= form.label :picture %>
-  <%= form.file_field :picture %>
+<div class="form-group row">
+  <%= form.label :picture, class: 'col-md-2 col-form-label' %>
+  <div class="col-md-10">
+    <%= form.file_field :picture, class: 'form-control-file' %>
+  </div>
 </div>
 
 <div class="actions">
-  <%= form.submit %>
+  <%= form.submit class: 'btn btn-primary mb-3' %>
 </div>
 <% end %>

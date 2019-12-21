@@ -1,33 +1,38 @@
-<p id="notice"><%= notice %></p>
+<h1><%= t '.title'%></h1>
 
-<h1>Books</h1>
+<div class="table-responsive-md">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th><%= Book.human_attribute_name(:title) %></th>
+        <th><%= Book.human_attribute_name(:memo) %></th>
+        <th><%= Book.human_attribute_name(:author) %></th>
+        <th><%= Book.human_attribute_name(:picture) %></th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Memo</th>
-      <th>Author</th>
-      <th>Picture</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <tbody>
+      <% @books.each do |book| %>
+      <tr>
+        <td><%= book.title %></td>
+        <td><%= book.memo %></td>
+        <td><%= book.author %></td>
+        <td><%= book.picture %></td>
+        <td class="link">
+          <%= link_to t('dictionary.button.show'), book %></td>
+        <td class="link"><%= link_to t('dictionary.button.edit'), edit_book_path(book) %></td>
+        <td class="link">
+          <%= link_to t('dictionary.button.destroy'), book, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
-  <tbody>
-    <% @books.each do |book| %>
-    <tr>
-      <td><%= book.title %></td>
-      <td><%= book.memo %></td>
-      <td><%= book.author %></td>
-      <td><%= book.picture %></td>
-      <td><%= link_to 'Show', book %></td>
-      <td><%= link_to 'Edit', edit_book_path(book) %></td>
-      <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= link_to t('dictionary.button.new book'), new_book_path, class: 'btn btn-primary mb-3' %>
 
-<br>
-
-<%= link_to 'New Book', new_book_path %>
+<%= paginate @books %>
+<%= page_entries_info @books %>
