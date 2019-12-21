@@ -297,6 +297,7 @@ DEPENDENCIES
   devise
   devise-i18n
   faker
+  image_processing (~> 1.2)
   jbuilder (~> 2.7)
   jquery-rails
   kaminari
