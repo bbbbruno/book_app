@@ -5,7 +5,10 @@
     <%= image_tag @profile.profile_avatar(:md), style: 'border-radius: 50%;' %>
     <span class="ml-2"><%= @user.username %></span>
   </p>
-  <%= link_to t('.show_books'), user_books_path(@user) %>
+  <div>
+    <%= link_to t('.show_reports'), user_reports_path(@user), class: 'mr-3' %>
+    <%= link_to t('.show_books'), user_books_path(@user) %>
+  </div>
 </h2>
 <div class="follow d-flex justify-content-start align-items-center mt-3">
   <div class="links">

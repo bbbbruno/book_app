@@ -1,0 +1,8 @@
+ja:
+  reports:
+    index:
+      title: '%{user} の日報一覧'
+    new:
+      title: 日報を新規作成
+    edit:
+      title: 日報を編集

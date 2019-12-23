@@ -1,0 +1,8 @@
+en:
+  reports:
+    index:
+      title: '%{user} All Reports'
+    new:
+      title: New Report
+    edit:
+      title: Edit Report

@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+    models:
+      report: 日報
+    attributes:
+      report:
+        title: タイトル
+        date: 日付
+        content: 内容
