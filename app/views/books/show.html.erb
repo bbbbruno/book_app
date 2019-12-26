@@ -28,3 +28,5 @@
   <%= link_to t('dictionary.button.edit'), edit_book_path(@book) %> |
 <% end %>
 <%= link_to t('dictionary.button.back'), user_books_path(@book.user) %>
+
+<%= render 'comments/comments', commentable: @book, comment: current_user.comments.build %>

@@ -1,0 +1,16 @@
+<div class="col-md-1 text-center mb-2 p-0">
+  <%= link_to image_tag(comment.user.profile.profile_avatar(:md), style: 'border-radius: 50%;'), comment.user.profile %>
+</div>
+
+<div class="col-md-11 pl-4">
+  <div class="card">
+    <%= form_with(model: [commentable, comment], class: 'card-body') do |f| %>
+    <div class="form-group">
+      <%= f.text_area :content, class: 'form-control', rows: 5 %>
+    </div>
+    <div class="actions text-center">
+      <%= f.submit t('form.submit.comment'), class: 'btn btn-warning px-5' %>
+    </div>
+    <% end %>
+  </div>
+</div>

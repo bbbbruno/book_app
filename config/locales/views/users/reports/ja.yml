@@ -1,0 +1,5 @@
+ja:
+  users:
+    reports:
+      index:
+        title: '%{user} の日報一覧'

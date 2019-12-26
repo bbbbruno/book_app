@@ -1,0 +1,29 @@
+<% comments.each do |comment| %>
+  <div class="row mb-4" id="comment" data-comment="<%= comment.id %>">
+    <div class="col-md-1 text-center mb-2 p-0">
+      <%= link_to image_tag(comment.user.profile.profile_avatar(:md), style: 'border-radius: 50%;'), comment.user.profile %>
+    </div>
+
+    <div class="col-md-11 pl-4 pr-0">
+      <div class="card">
+        <div class="card-header py-2">
+          <small>
+            <%= link_to comment.user.username, comment.user.profile, class: 'mr-1' %>
+            <span class="text-muted"><%= l comment.created_at %></span>
+          </small>
+        </div>
+
+        <div class="card-body px-3 pt-3 pb-0 mb-0">
+          <div class="card-text"><%= simple_format h comment.content) %></div>
+        </div>
+
+        <% if comment.user == current_user %>
+          <div class="card-footer text-muted text-center">
+            <%= link_to t('dictionary.button.edit'), [:edit, comment.commentable, comment], remote: true, class: 'btn btn-success mr-3 px-5' %>
+            <%= link_to t('dictionary.button.destroy'), [comment.commentable, comment], method: :delete, remote: true, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger px-5' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

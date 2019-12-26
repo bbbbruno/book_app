@@ -1,5 +1,5 @@
 <h1><%= t '.title' %></h1>
 
-<%= render 'form', { user: @user, report: @report } %>
+<%= render 'form', report: @report %>
 
-<%= link_to t('dictionary.button.back'), user_reports_path(@user) %>
+<%= link_to t('dictionary.button.back'), :back %>

@@ -38,3 +38,12 @@ en:
     new: Book was successfully created.
     update: Book was successfully updated.
     destroy: Book was successfully destroyed.
+  form:
+    submit:
+      comment: Comment
+  time:
+    formats:
+      default: '%a, %d %b %Y %H:%M'
+  date:
+    formats:
+      default: '%d %B %Y'

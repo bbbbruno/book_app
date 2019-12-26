@@ -1,29 +1,32 @@
 # frozen_string_literal: true
 
 class ReportsController < ApplicationController
-  before_action :set_user
-  before_action :authenticate_user, only: %i[new create edit update destroy]
-  before_action :set_report, only: %i[show edit update destroy]
+  before_action :set_report, only: :show
+  before_action :set_my_report, only: %i[edit update destroy]
 
   def index
-    @reports = @user.reports.order(created_at: :desc).page(params[:page])
+    @reports =
+      Report
+        .recent
+        .page(params[:page])
   end
 
   def show
   end
 
   def new
-    @report = @user.reports.build
+    @report = Report.new
   end
 
   def edit
   end
 
   def create
-    @report = @user.reports.build(report_params)
+    @report = Report.new(report_params)
+    @report.user = current_user
 
     if @report.save
-      redirect_to user_report_url(@user, @report), notice: t('flash.new')
+      redirect_to @report, notice: t('flash.new')
     else
       render :new
     end
@@ -31,7 +34,7 @@ class ReportsController < ApplicationController
 
   def update
     if @report.update(report_params)
-      redirect_to user_report_url(@user, @report), notice: t('flash.update')
+      redirect_to @report, notice: t('flash.update')
     else
       render :edit
     end
@@ -40,20 +43,17 @@ class ReportsController < ApplicationController
   def destroy
     @report.destroy
 
-    redirect_to user_reports_path, notice: t('flash.destroy')
+    redirect_to user_reports_path(current_user), notice: t('flash.destroy')
   end
 
   private
-    def set_user
-      @user = User.find(params[:user_id])
-    end
-
     def set_report
-      @report = @user.reports.find(params[:id])
+      @report = Report.find(params[:id])
     end
 
-    def authenticate_user
-      redirect_to user_reports_url(@user), alert: t('controller.alert.authenticate') unless current_user == @user
+    def set_my_report
+      @report = current_user.reports.find_by(id: params[:id])
+      redirect_to user_reports_url(current_user), alert: t('controller.alert.authenticate') unless @report
     end
 
     def report_params

@@ -13,6 +13,9 @@ ja:
     new: 保存しました！
     update: 更新しました！
     destroy: 削除しました！
+  form:
+    submit:
+      comment: コメントをする
   time:
     formats:
       default: '%Y年%m月%d日(%a) %H:%M'
