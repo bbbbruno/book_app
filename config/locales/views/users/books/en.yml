@@ -1,0 +1,5 @@
+en:
+  users:
+    books:
+      index:
+        title: "%{user} All Books"

@@ -1,7 +1,7 @@
 ja:
   books:
     index:
-      title: "%{user} の本一覧"
+      title: 本一覧
     new:
       title: 本を新規作成
     show:

@@ -3,6 +3,6 @@
 class Users::FollowersController < ApplicationController
   def index
     @user  = User.find(params[:user_id])
-    @users = @user.followers.order(created_at: :desc)
+    @users = @user.followers.recent.page(params[:page])
   end
 end

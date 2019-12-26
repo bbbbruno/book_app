@@ -6,7 +6,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :omniauthable, omniauth_providers: %i[github]
 
-  scope :recent, -> { order(created_at: :desc) }
+  include Order
 
   has_one :profile, dependent: :destroy
   after_create { self.create_profile! }

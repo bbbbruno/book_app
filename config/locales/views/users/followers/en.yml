@@ -1,0 +1,5 @@
+en:
+  users:
+    followers:
+      index:
+        title: "%{user} All Followers"

@@ -2,7 +2,3 @@ ja:
   users:
     index:
       title: ユーザー一覧
-    followings:
-      title: "%{user} がフォロー中のユーザー一覧"
-    followers:
-      title: "%{user} のフォロワー一覧"

@@ -1,0 +1,5 @@
+ja:
+  users:
+    books:
+      index:
+        title: "%{user} の本一覧"

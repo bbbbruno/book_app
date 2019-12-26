@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ProfilesController < ApplicationController
-  before_action :set_profile, except: :index
+  before_action :set_profile, only: %i[show edit update]
   before_action :authenticate_profile, only: %i[edit update]
 
   def show
@@ -24,11 +24,11 @@ class ProfilesController < ApplicationController
       @profile = User.find(params[:id]).profile
     end
 
-    def profile_params
-      params.require(:profile).permit(:name, :zipcode, :address, :self_introduction, :avatar)
-    end
-
     def authenticate_profile
       redirect_to @profile, alert: t('dictionary.alert.authenticate') unless @profile.user == current_user
+    end
+
+    def profile_params
+      params.require(:profile).permit(:name, :zipcode, :address, :self_introduction, :avatar)
     end
 end

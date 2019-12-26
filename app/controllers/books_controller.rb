@@ -1,27 +1,34 @@
 # frozen_string_literal: true
 
 class BooksController < ApplicationController
-  before_action :set_user
-  before_action :set_book, only: %i[show edit update destroy]
-  before_action :authenticate_user, only: %i[new create edit update destroy]
+  before_action :set_book, only: :show
+  before_action :set_my_book, only: %i[edit update destroy]
 
   def index
-    @books = @user.books.order(created_at: :desc).page(params[:page])
+    @books =
+      Book
+        .where(user: current_user.followings)
+        .or(Book.where(user: current_user))
+        .recent
+        .page(params[:page])
   end
 
-  def show; end
+  def show
+  end
 
   def new
-    @book = @user.books.build
+    @book = Book.new
   end
 
-  def edit; end
+  def edit
+  end
 
   def create
-    @book = @user.books.build(book_params)
+    @book = Book.new(book_params)
+    @book.user = current_user
 
     if @book.save
-      redirect_to user_book_url(@user, @book), notice: t('flash.new')
+      redirect_to book_url(@book), notice: t('flash.new')
     else
       render :new
     end
@@ -29,7 +36,7 @@ class BooksController < ApplicationController
 
   def update
     if @book.update(book_params)
-      redirect_to user_book_url(@user, @book), notice: t('flash.update')
+      redirect_to @book, notice: t('flash.update')
     else
       render :edit
     end
@@ -37,20 +44,17 @@ class BooksController < ApplicationController
 
   def destroy
     @book.destroy
-    redirect_to user_books_url(@user), notice: t('flash.destroy')
+    redirect_to user_books_url(current_user), notice: t('flash.destroy')
   end
 
   private
-    def set_user
-      @user = User.find(params[:user_id])
-    end
-
     def set_book
-      @book = @user.books.find(params[:id])
+      @book = Book.find(params[:id])
     end
 
-    def authenticate_user
-      redirect_to user_books_url(@user), alert: t('dictionary.alert.authenticate') unless current_user == @user
+    def set_my_book
+      @book = current_user.books.find_by(id: params[:id])
+      redirect_to user_books_url(current_user), alert: t('dictionary.alert.authenticate') unless @book
     end
 
     def book_params

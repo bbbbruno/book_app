@@ -1,0 +1,4 @@
+en:
+  users:
+    followings:
+      title: "%{user} All Following Users"
