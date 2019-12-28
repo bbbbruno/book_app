@@ -22,15 +22,16 @@ class ProfilesController < ApplicationController
     end
   end
 
-  def set_profile
-    @profile = User.find(params[:id]).profile
-  end
+  private
+    def set_profile
+      @profile = User.find(params[:id]).profile
+    end
 
-  def profile_params
-    params.require(:profile).permit(:name, :zipcode, :address, :self_introduction)
-  end
+    def profile_params
+      params.require(:profile).permit(:name, :zipcode, :address, :self_introduction)
+    end
 
-  def authenticate_profile
-    redirect_to @profile, alert: '他のユーザーのプロフィールは編集できません。' unless @profile.user.id == current_user.id
-  end
+    def authenticate_profile
+      redirect_to @profile, alert: '他のユーザーのプロフィールは編集できません。' unless @profile.user.id == current_user.id
+    end
 end
