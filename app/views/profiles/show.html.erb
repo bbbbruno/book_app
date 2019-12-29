@@ -23,6 +23,6 @@
 </p>
 
 <% if current_user.id == @profile.user.id %>
-<%= link_to t('dictionary.button.edit'), edit_profile_path(current_user) %> |
+  <%= link_to t('dictionary.button.edit'), edit_profile_path(current_user) %> |
 <% end %>
 <%= link_to t('dictionary.button.back'), profiles_path %>
