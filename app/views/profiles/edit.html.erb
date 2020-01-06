@@ -1,0 +1,47 @@
+<h1><%= t '.title' %></h1>
+
+<%= form_with(model: @profile, local: true) do |f| %>
+  <% if @profile.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <p><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</p>
+
+      <ul>
+        <% @profile.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group row">
+    <%= f.label :name, class: 'col-md-2 col-form-label' %>
+    <div class="col-md-10">
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= f.label :zipcode, class: 'col-md-2 col-form-label' %>
+    <div class="col-md-10">
+      <%= f.text_field :zipcode, class: 'form-control', rows: 5 %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= f.label :address, class: 'col-md-2 col-form-label' %>
+    <div class="col-md-10">
+      <%= f.text_field :address, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= f.label :self_introduction, class: 'col-md-2 col-form-label' %>
+    <div class="col-md-10">
+      <%= f.text_area :self_introduction, class: 'form-control', rows: 7 %>
+    </div>
+  </div>
+
+  <div class="actions text-center">
+    <%= f.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>

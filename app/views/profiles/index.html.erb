@@ -1,0 +1,7 @@
+<h1><%= t '.title' %></h1>
+
+<ul>
+  <% @profiles.each do |profile| %>
+    <li class="h4 py-1"><a href="profiles/<%= profile.user.id %>"><%= profile.user.username %></a></li>
+  <% end %>
+</ul>

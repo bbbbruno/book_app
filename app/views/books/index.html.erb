@@ -14,25 +14,25 @@
 
     <tbody>
       <% @books.each do |book| %>
-      <tr>
-        <td><%= book.title %></td>
-        <td><%= book.memo %></td>
-        <td><%= book.author %></td>
-        <td><%= book.picture %></td>
-        <td class="link">
-          <%= link_to t('dictionary.button.show'), book %></td>
-        <td class="link"><%= link_to t('dictionary.button.edit'), edit_book_path(book) %></td>
-        <td class="link">
-          <%= link_to t('dictionary.button.destroy'), book, method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
+        <tr>
+          <td><%= book.title %></td>
+          <td><%= book.memo %></td>
+          <td><%= book.author %></td>
+          <td><%= book.picture %></td>
+          <td class="link">
+            <%= link_to t('dictionary.button.show'), book %></td>
+          <td class="link"><%= link_to t('dictionary.button.edit'), edit_book_path(book) %></td>
+          <td class="link">
+            <%= link_to t('dictionary.button.destroy'), book, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
         </td>
       </tr>
-      <% end %>
-    </tbody>
-  </table>
+    <% end %>
+  </tbody>
+</table>
 </div>
 
 <%= link_to t('dictionary.button.new book'), new_book_path, class: 'btn btn-primary mb-3' %>
 
 <%= paginate @books %>
-<%= page_entries_info @books %>
+<div class="paginate-info"><%= page_entries_info @books %></div>
