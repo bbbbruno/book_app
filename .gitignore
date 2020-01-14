@@ -34,9 +34,3 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
-
-# My settings
-.history
-.envrc
-..envrc.un~
-settings.json
