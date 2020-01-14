@@ -49,8 +49,8 @@ end
 
 User.find_by(username: 'strongzero').profile.update(
   name: 'ストロングマン',
-  zipcode: '933-0114',
-  address: '富山県高岡市伏木古府１−７−４４',
+  zipcode: '333-3333',
+  address: '寒い寒い北陸のどこか',
   self_introduction: <<~TEXT
   やあ！僕の名前はストロングマン！
   今は北陸の寒い街で活動中だよ！
