@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.
 # You can define all roles on a single server, or split them:
 
-# server "example.com", user: "deploy", roles: %w{app db web}, my_property: :my_value
+server 'bookapp.work', user: 'deploy', roles: %w{app db web}, my_property: :my_value
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
@@ -41,11 +43,12 @@
 #
 # Global options
 # --------------
-#  set :ssh_options, {
-#    keys: %w(/home/rlisowski/.ssh/id_rsa),
-#    forward_agent: false,
-#    auth_methods: %w(password)
-#  }
+set :ssh_options, {
+  keys: %w[~/.ssh/client_rsa],
+  forward_agent: true,
+  # auth_methods: %w[publickey],
+  port: 12474,
+}
 #
 # The server-based syntax can be used to override options:
 # ------------------------------------
@@ -59,3 +62,15 @@
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
+
+# ==================
+# Postgresql setup
+set :pg_without_sudo, true
+set :pg_system_user, fetch(:user)
+set :pg_host, 'localhost'
+set :pg_database, 'BookApp_production'
+set :pg_username, 'BookApp'
+set :pg_password, ENV['BOOKAPP_DATABASE_PASSWORD']
+set :pg_extensions, ['citext', 'hstore']
+set :pg_encoding, 'UTF-8'
+set :pg_pool, '100'
