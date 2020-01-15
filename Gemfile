@@ -65,15 +65,11 @@ group :development do
 
   gem 'capistrano'
   gem 'capistrano-rbenv'
-  gem 'capistrano-nodenv'
-  gem 'capistrano-yarn'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
+  gem 'capistrano-faster-assets'
   gem 'capistrano3-puma'
-
   gem 'capistrano-postgresql'
-
-  gem 'sshkit-sudo'
 
   gem 'ed25519'
   gem 'bcrypt_pbkdf'

@@ -29,7 +29,7 @@ set :pty, true
 append :linked_files, 'config/credentials/production.key'
 
 # Default value for linked_dirs is []
-append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system'
+append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system', 'public/packs', 'node_modules'
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -47,24 +47,12 @@ set :rbenv_type, :user
 set :rbenv_custom_path, '/home/deploy/.anyenv/envs/rbenv'
 set :rbenv_ruby, File.read('.ruby-version').strip
 set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
-set :rbenv_map_bins, %w[rake gem bundle ruby rails puma pumactl]
+set :rbenv_map_bins, %w[rake gem bundle ruby rails]
 set :rbenv_roles, :all
 
-set :nodenv_type, :user
-set :nodenv_node, '13.6.0'
-set :nodenv_custom_path, '~/.anyenv/envs/nodenv'
-set :nodenv_prefix, "NODENV_ROOT=#{fetch(:nodenv_path)} NODENV_VERSION=#{fetch(:nodenv_node)} #{fetch(:nodenv_path)}/bin/nodenv exec"
-
-set :yarn_bin, '~/.anyenv/envs/nodenv/shims/yarn'
+set :default_env, { NODE_ENV: 'production' }
 
 append :linked_dirs, '.bundle'
 set :bundle_jobs, 1
 
-namespace :webpack do
-  after 'yarn:install', 'webpack:build'
-  task :build do
-    on roles(:app) do
-      execute "cd #{release_path} && #{fetch(:yarn_bin)} run build:prod"
-    end
-  end
-end
+append :rbenv_map_bins, 'puma', 'pumactl'

@@ -46,7 +46,7 @@ server 'bookapp.work', user: 'deploy', roles: %w{app db web}, my_property: :my_v
 set :ssh_options, {
   keys: %w[~/.ssh/client_rsa],
   forward_agent: true,
-  # auth_methods: %w[publickey],
+  auth_methods: %w[publickey],
   port: 12474,
 }
 #
@@ -74,3 +74,15 @@ set :pg_password, ENV['BOOKAPP_DATABASE_PASSWORD']
 set :pg_extensions, ['citext', 'hstore']
 set :pg_encoding, 'UTF-8'
 set :pg_pool, '100'
+
+# ==================
+# puma
+set :puma_daemonize, true
+
+# ==================
+# nginx
+set :nginx_config_name, "#{fetch(:application)}.work"
+set :nginx_server_name, "localhost #{fetch(:nginx_config_name)}"
+set :nginx_use_ssl, true
+set :nginx_ssl_certificate, "/etc/letsencrypt/live/#{fetch(:nginx_config_name)}/fullchain.pem"
+set :nginx_ssl_certificate_key, "/etc/letsencrypt/live/#{fetch(:nginx_config_name)}/privkey.pem"
