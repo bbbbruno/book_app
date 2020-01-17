@@ -39,4 +39,9 @@ namespace :utils do
       end
     end
   end
+  task :copy_production_key do
+    on roles(:app) do
+      upload! './config/credentials/production.key', "#{fetch(:deploy_to)}/shared/config/credentials/production.key"
+    end
+  end
 end

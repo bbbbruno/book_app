@@ -23,7 +23,7 @@ set :deploy_to, "/srv/#{fetch(:application)}"
 # set :format_options, command_output: true, log_file: "log/capistrano.log", color: :auto, truncate: :auto
 
 # Default value for :pty is false
-set :pty, true
+# set :pty, true
 
 # Default value for :linked_files is []
 append :linked_files, 'config/credentials/production.key'
@@ -42,6 +42,12 @@ append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/syst
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
+
+set :deploy_via, :remote_cache
+
+# Defaults to false
+# Skip migration if files in db/migrate were not modified
+set :conditionally_migrate, true
 
 set :rbenv_type, :user
 set :rbenv_custom_path, '/home/deploy/.anyenv/envs/rbenv'

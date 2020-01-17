@@ -64,12 +64,14 @@ group :development do
   gem 'letter_opener_web'
 
   gem 'capistrano'
+  gem 'capistrano-postgresql'
+  gem 'capistrano-safe-deploy-to'
   gem 'capistrano-rbenv'
+  gem 'capistrano-rbenv-install'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano-faster-assets'
   gem 'capistrano3-puma'
-  gem 'capistrano-postgresql'
 
   gem 'ed25519'
   gem 'bcrypt_pbkdf'
