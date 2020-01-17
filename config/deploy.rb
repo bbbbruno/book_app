@@ -49,6 +49,14 @@ set :deploy_via, :remote_cache
 # Skip migration if files in db/migrate were not modified
 set :conditionally_migrate, true
 
+task :copy_production_key do
+  on roles(:app) do
+    execute :mkdir, '-p', "#{fetch(:deploy_to)}/shared/config/credentials/"
+    upload! './config/credentials/production.key', "#{fetch(:deploy_to)}/shared/config/credentials/production.key"
+  end
+end
+after 'safe_deploy_to:ensure', :copy_production_key
+
 set :rbenv_type, :user
 set :rbenv_custom_path, '/home/deploy/.anyenv/envs/rbenv'
 set :rbenv_ruby, File.read('.ruby-version').strip
