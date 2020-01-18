@@ -57,6 +57,19 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 
   gem 'letter_opener_web'
+
+  gem 'capistrano'
+  gem 'capistrano-postgresql'
+  gem 'capistrano-safe-deploy-to'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-rbenv-install'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-faster-assets'
+  gem 'capistrano3-puma'
+
+  gem 'ed25519'
+  gem 'bcrypt_pbkdf'
 end
 
 group :test do
