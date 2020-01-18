@@ -9,9 +9,8 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
   encoding: unicode
-  user: bruno
-  host: localhost
-
+  user: <%= ENV.fetch("PGUSER") %>
+  host: <%= ENV.fetch("PGHOST") { 'localhost' } %>
 
 development:
   <<: *default
