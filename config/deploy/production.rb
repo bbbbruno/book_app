@@ -44,7 +44,7 @@ server 'bookapp.work', user: 'deploy', roles: %w{app db web}, my_property: :my_v
 # Global options
 # --------------
 set :ssh_options, {
-  keys: %w[~/.ssh/client_rsa],
+  keys: ["#{ENV.fetch('PRODUCTION_SSH_KEY')}"],
   forward_agent: true,
   auth_methods: %w[publickey],
   port: 12474,
@@ -70,7 +70,7 @@ set :pg_system_user, fetch(:user)
 set :pg_host, 'localhost'
 set :pg_database, 'BookApp_production'
 set :pg_username, 'BookApp'
-set :pg_password, ENV['BOOKAPP_DATABASE_PASSWORD']
+set :pg_password, ENV.fetch('BOOKAPP_DATABASE_PASSWORD')
 set :pg_extensions, ['citext', 'hstore']
 set :pg_encoding, 'UTF-8'
 set :pg_pool, '100'
