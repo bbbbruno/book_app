@@ -81,6 +81,18 @@ jobs:
             bin/rails test
             bin/rails test:system
 
+  deploy:
+    executor: default
+    steps:
+      - checkout
+      - setup
+      - add_ssh_keys:
+          fingerprints:
+            - 2e:c1:59:f0:c1:3c:be:14:18:8a:ea:56:ec:6f:9f:a0
+      - deploy:
+          name: Deploy with Capistrano
+          command: bundle exec cap production deploy
+
 workflows:
   build_and_test:
     jobs:
@@ -89,3 +101,6 @@ workflows:
             branches:
               ignore:
                 - master
+      - deploy:
+          requires:
+            - test

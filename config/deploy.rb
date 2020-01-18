@@ -49,13 +49,20 @@ set :deploy_via, :remote_cache
 # Skip migration if files in db/migrate were not modified
 set :conditionally_migrate, true
 
-task :copy_production_key do
-  on roles(:app) do
-    execute :mkdir, '-p', "#{fetch(:deploy_to)}/shared/config/credentials/"
-    upload! './config/credentials/production.key', "#{fetch(:deploy_to)}/shared/config/credentials/production.key"
+namespace :safe_deploy_to do
+  task :push_config do
+    next unless any? :linked_files
+    on roles(:app) do
+      fetch(:linked_files).each do |file|
+        unless test "[ -f #{shared_path.join file} ]"
+          execute :mkdir, '-p', shared_path.join(File.dirname(file))
+          upload! file, "#{shared_path.join file}"
+        end
+      end
+    end
   end
+  after 'safe_deploy_to:ensure', 'safe_deploy_to:push_config'
 end
-after 'safe_deploy_to:ensure', :copy_production_key
 
 set :rbenv_type, :user
 set :rbenv_custom_path, '/home/deploy/.anyenv/envs/rbenv'
