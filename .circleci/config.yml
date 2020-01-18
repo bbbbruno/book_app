@@ -94,13 +94,9 @@ jobs:
           command: bundle exec cap production deploy
 
 workflows:
-  build_and_test:
+  test_and_deploy:
     jobs:
-      - test:
-          filters:
-            branches:
-              ignore:
-                - master
+      - test
       - deploy:
           requires:
             - test
