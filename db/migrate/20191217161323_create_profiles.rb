@@ -7,9 +7,10 @@ class CreateProfiles < ActiveRecord::Migration[6.0]
       t.string :zipcode
       t.string :address
       t.text :self_introduction
-      t.belongs_to :user, index: { unique: true }, foreign_key: true
+      t.integer :user_id
 
       t.timestamps
     end
+    add_index :profiles, :user_id, unique: true
   end
 end

@@ -13,7 +13,7 @@ gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
-gem 'sass-rails', '>= 6'
+# gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 4.0'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -31,19 +31,13 @@ gem 'image_processing', '~> 1.2'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
-gem 'awesome_print'
-
-gem 'carrierwave'
-
 gem 'rails-i18n'
 
 gem 'kaminari'
 
 gem 'faker'
 
-gem 'bootstrap'
-gem 'jquery-rails'
-
+# device
 gem 'devise'
 gem 'devise-i18n'
 
@@ -63,6 +57,19 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 
   gem 'letter_opener_web'
+
+  gem 'capistrano'
+  gem 'capistrano-postgresql'
+  gem 'capistrano-safe-deploy-to'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-rbenv-install'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-faster-assets'
+  gem 'capistrano3-puma'
+
+  gem 'ed25519'
+  gem 'bcrypt_pbkdf'
 end
 
 group :test do
