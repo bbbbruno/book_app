@@ -32,10 +32,10 @@ end
 end
 
 [
-  ['bbbbruno', 'bbbbruno@gmail.com', 'simsimsim', 'simsimsim'],
-  ['ichigo', 'ichigo@gmail.com', 'ichigo', 'ichigo'],
-  ['macmac', 'macmac@gmail.com', 'macmac', 'macmac'],
-  ['strongzero', 'strong@gmail.com', 'strong', 'strong']
+  ['bbbbruno69', 'bbbbruno@example.com', 'simsimsim', 'simsimsim'],
+  ['ichigo', 'ichigo@example.com', 'ichigo', 'ichigo'],
+  ['macmac', 'macmac@example.com', 'macmac', 'macmac'],
+  ['strongzero', 'strong@example.com', 'strong', 'strong']
 ].each do |username, email, password, password_confirmation|
   User.create!(
     username: username,
@@ -43,5 +43,20 @@ end
     password: password,
     password_confirmation: password_confirmation,
     confirmed_at: Time.now,
+    uid: User.create_unique_string,
   )
 end
+
+User.find_by(username: 'strongzero').profile.update(
+  name: 'ストロングマン',
+  zipcode: '000-0000',
+  address: '寒い寒い北陸のどこか',
+  self_introduction: <<~TEXT
+  やあ！僕の名前はストロングマン！
+  今は北陸の寒い街で活動中だよ！
+  寒すぎて今にも凍え死にそうだけどね！
+  ハハ！！
+  でも、ストロングゼロさえ飲めばへっちゃらさ！
+  さあ！君も一緒に飲んでみないかい？？
+  TEXT
+)

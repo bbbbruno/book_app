@@ -17,9 +17,9 @@
   <%= @profile.address %>
 </p>
 
-<p>
+<p class="mb-2">
   <strong><%= Profile.human_attribute_name(:self_introduction) %>:</strong><br>
-  <%= @profile.self_introduction %>
+  <%= simple_format h @profile.self_introduction %>
 </p>
 
 <% if current_user.id == @profile.user.id %>
