@@ -305,6 +305,7 @@ DEPENDENCIES
   devise-i18n
   ed25519
   faker
+  image_processing (~> 1.2)
   jbuilder (~> 2.7)
   kaminari
   letter_opener_web

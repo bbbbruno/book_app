@@ -28,4 +28,11 @@ class User < ApplicationRecord
   def self.create_unique_string
     SecureRandom.uuid
   end
+
+  def set_avatar(auth)
+    image_url = auth.info.image
+    uri = URI.parse(image_url)
+    image = uri.open
+    profile.avatar.attach(io: image, filename: "#{self.username}_avatar.png", content_type: 'image/png')
+  end
 end

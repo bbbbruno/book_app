@@ -5,7 +5,7 @@ class ProfilesController < ApplicationController
   before_action :authenticate_profile, only: %i[edit update]
 
   def index
-    @profiles = Profile.all
+    @profiles = Profile.recent
   end
 
   def show

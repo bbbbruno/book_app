@@ -1,26 +1,35 @@
 <h1><%= t '.title' %></h1>
 
-<h2 class="mb-4"><%= @profile.user.username %></h2>
+<h2><%= @profile.user.username %></h2>
 
-<p>
-  <strong><%= Profile.human_attribute_name(:name) %>:</strong>
-  <%= @profile.name %>
-</p>
+<table class="table table-bordered mb-4">
+  <tbody>
+    <tr>
+      <th><%= Profile.human_attribute_name(:avatar) %></th>
+      <td><%= image_tag @profile.profile_avatar(:md) %></td>
+    </tr>
 
-<p>
-  <strong><%= Profile.human_attribute_name(:zipcode) %>:</strong>
-  <%= @profile.zipcode %>
-</p>
+    <tr>
+      <th><%= Profile.human_attribute_name(:name) %></th>
+      <td><%= @profile.name %></td>
+    </tr>
 
-<p>
-  <strong><%= Profile.human_attribute_name(:address) %>:</strong>
-  <%= @profile.address %>
-</p>
+    <tr>
+      <th><%= Profile.human_attribute_name(:zipcode) %></th>
+      <td><%= @profile.zipcode %></td>
+    </tr>
 
-<p class="mb-2">
-  <strong><%= Profile.human_attribute_name(:self_introduction) %>:</strong><br>
-  <%= simple_format h @profile.self_introduction %>
-</p>
+    <tr>
+      <th><%= Profile.human_attribute_name(:address) %></th>
+      <td><%= @profile.address %></td>
+    </tr>
+
+    <tr>
+      <th><%= Profile.human_attribute_name(:self_introduction) %></th><br>
+      <td><%= simple_format h @profile.self_introduction %></td>
+    </tr>
+  </tbody>
+</table>
 
 <% if current_user.id == @profile.user.id %>
   <%= link_to t('dictionary.button.edit'), edit_profile_path(current_user) %> |
