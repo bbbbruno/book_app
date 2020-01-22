@@ -25,7 +25,7 @@
           <td class="link">
             <%= link_to t('dictionary.button.show'), user_book_path(@user, book) %>
           </td>
-          <% if current_user?(@user) %>
+          <% if current_user == @user %>
             <td class="link">
               <%= link_to t('dictionary.button.edit'), edit_user_book_path(@user, book) %>
             </td>
@@ -39,7 +39,7 @@
   </table>
 </div>
 
-<% if current_user?(@user) %>
+<% if current_user == @user %>
   <%= link_to t('dictionary.button.new book'), new_user_book_path, class: 'btn btn-primary mb-3' %>
 <% end %>
 

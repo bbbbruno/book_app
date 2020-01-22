@@ -9,11 +9,11 @@
 </h2>
 <div class="follow d-flex justify-content-start align-items-center mt-3">
   <div class="links">
-    <span id="followings"><%= link_to count_followings(@user), followings_user_path(@user), class: 'mr-2' %></span>
-    <span id="followers"><%= link_to count_followers(@user), followers_user_path(@user) %></span>
+    <span id="followings"><%= link_to count_followings(@user), user_followings_path(@user), class: 'mr-2' %></span>
+    <span id="followers"><%= link_to count_followers(@user), user_followers_path(@user) %></span>
   </div>
 
-  <% unless current_user?(@user) %>
+  <% unless current_user == @user %>
     <div id="follow_form" class="ml-3">
       <% if current_user.following?(@user) %>
         <%= render 'unfollow', user: @user %>
@@ -49,7 +49,7 @@
   </tbody>
 </table>
 
-<% if current_user?(@profile.user) %>
+<% if current_user == @profile.user %>
   <%= link_to t('dictionary.button.edit'), edit_profile_path(current_user) %> |
 <% end %>
 <%= link_to t('dictionary.button.back'), users_path %>

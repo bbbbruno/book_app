@@ -24,7 +24,7 @@
   </tbody>
 </table>
 
-<% if current_user?(@user) %>
+<% if current_user == @user %>
   <%= link_to t('dictionary.button.edit'), edit_user_book_path(@user, @book) %> |
 <% end %>
 <%= link_to t('dictionary.button.back'), user_books_path(@user) %>

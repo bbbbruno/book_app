@@ -21,9 +21,8 @@ Rails.application.routes.draw do
     resources :users do
       resources :books
 
-      member do
-        get :followings, :followers
-      end
+      resources :followings, only: :index, controller: 'users/followings'
+      resources :followers, only: :index, controller: 'users/followers'
     end
 
     resources :profiles, only: %i[show edit update]
