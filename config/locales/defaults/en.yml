@@ -31,6 +31,9 @@
 
 en:
   hello: "Hello world"
+  dictionary:
+    alert:
+      authenticate: Unauthorized access
   flash:
     new: Book was successfully created.
     update: Book was successfully updated.

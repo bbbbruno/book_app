@@ -50,7 +50,7 @@ class BooksController < ApplicationController
     end
 
     def authenticate_user
-      redirect_to user_books_url(@user), alert: t('books.alert.authenticate') unless current_user == @user
+      redirect_to user_books_url(@user), alert: t('dictionary.alert.authenticate') unless current_user == @user
     end
 
     def book_params

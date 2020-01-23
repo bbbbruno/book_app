@@ -29,6 +29,6 @@ class ProfilesController < ApplicationController
     end
 
     def authenticate_profile
-      redirect_to @profile, alert: t('profiles.alert.authenticate') unless @profile.user == current_user
+      redirect_to @profile, alert: t('dictionary.alert.authenticate') unless @profile.user == current_user
     end
 end
