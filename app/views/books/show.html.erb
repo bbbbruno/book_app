@@ -17,10 +17,18 @@
       <td><%= @book.author %></td>
     </tr>
 
-    <tr>
-      <th><%= Book.human_attribute_name(:picture) %></th>
-      <td><%= image_tag @book.picture.variant(resize_to_fit: [300, 300]) if @book.picture.attached? %></td>
-    </tr>
+    <% if @book.picture.attached? %>
+      <tr>
+        <th><%= Book.human_attribute_name(:picture) %></th>
+        <td>
+          <% if @book.picture.variable? %>
+            <%= image_tag @book.picture.variant(resize_to_fit: [300, 300]) %>
+          <% else %>
+            <%= link_to 'PDF', url_for(@book.picture) %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
 

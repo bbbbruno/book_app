@@ -1,0 +1,15 @@
+.card {
+
+  a.link {
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+pre {
+  padding: 1em;
+  background-color: #EFEFEF;
+}
