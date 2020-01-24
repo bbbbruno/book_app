@@ -53,7 +53,7 @@ class ReportsController < ApplicationController
 
     def set_my_report
       @report = current_user.reports.find_by(id: params[:id])
-      redirect_to user_reports_url(current_user), alert: t('controller.alert.authenticate') unless @report
+      redirect_to user_reports_url(current_user), alert: t('dictionary.alert.authenticate') unless @report
     end
 
     def report_params
