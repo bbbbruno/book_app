@@ -1,7 +1,9 @@
 $('#comment_area').html("<%= j(render 'comments/comment', comments: @commentable.comments.includes(user: { profile: { avatar_attachment: :blob } }).former ) %>");
 
 <% flash.each do |type, message| %>
-$("#flash_messages").html('<div class="alert alert-<%= type %> mt-3"><%= message %></div>');
+  $("#flash_messages").html('
+  <div class="alert alert-<%= type %> mt-3"><%= message %></div>
+  ');
 <% end %>
 
 $('#comment_form').html("<%= j(render 'form', commentable: @commentable, comment: current_user.comments.build) %>");
