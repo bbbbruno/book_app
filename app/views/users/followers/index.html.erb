@@ -1,0 +1,7 @@
+<h1><%= t '.title', user: @user.username %></h1>
+
+<ul>
+  <% @users.each do |user| %>
+    <%= render 'users/user', user: user %>
+  <% end %>
+</ul>

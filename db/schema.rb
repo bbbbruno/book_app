@@ -43,6 +43,19 @@ ActiveRecord::Schema.define(version: 2020_01_14_121539) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "author"
     t.string "picture"
+    t.bigint "user_id"
+    t.index ["created_at"], name: "index_books_on_created_at", order: :desc
+    t.index ["user_id"], name: "index_books_on_user_id"
+  end
+
+  create_table "follows", force: :cascade do |t|
+    t.bigint "following_id"
+    t.bigint "followed_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["followed_id"], name: "index_follows_on_followed_id"
+    t.index ["following_id", "followed_id"], name: "index_follows_on_following_id_and_followed_id", unique: true
+    t.index ["following_id"], name: "index_follows_on_following_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -76,6 +89,7 @@ ActiveRecord::Schema.define(version: 2020_01_14_121539) do
     t.string "username"
     t.string "uid", default: "", null: false
     t.string "provider", default: "", null: false
+    t.index ["created_at"], name: "index_users_on_created_at", order: :desc
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
@@ -83,5 +97,8 @@ ActiveRecord::Schema.define(version: 2020_01_14_121539) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "books", "users"
+  add_foreign_key "follows", "users", column: "followed_id"
+  add_foreign_key "follows", "users", column: "following_id"
   add_foreign_key "profiles", "users"
 end

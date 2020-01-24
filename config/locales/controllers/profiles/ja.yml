@@ -1,0 +1,4 @@
+ja:
+  profiles:
+    alert:
+      authenticate: 他のユーザーのプロフィールは編集できません。

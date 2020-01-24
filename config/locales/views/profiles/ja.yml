@@ -1,8 +1,11 @@
 ja:
   profiles:
-    index:
-      title: ユーザー一覧
     show:
       title: プロフィール
+      show_books: 本一覧へ
+      followings: フォロー数
+      followers: フォロワー数
+      follow: フォローする
+      unfollow: フォローを外す
     edit:
       title: プロフィール編集

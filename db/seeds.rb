@@ -8,34 +8,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 [
-  ['四月は君の嘘', 'ピアニストの少年とバイオリニストの少女による音楽と青春の話', ''],
-  ['some title', 'some memo', ''],
-  ['ちはやふる', '熱血競技かるた漫画', '末次由紀'],
-  ['RubyとRailsの学習ガイド', 'Rails関連技術地図とそれらの学習資料の紹介', '五十嵐邦明']
-].each do |title, memo, author|
-  Book.create!(
-    title: title,
-    memo: memo,
-    author: author,
-  )
-end
-
-96.times do |n|
-  title = Faker::Lorem.sentence(word_count: 1)
-  memo = Faker::Lorem.sentence(word_count: 5)
-  author = Faker::Name.name
-  Book.create!(
-    title: title,
-    memo: memo,
-    author: author,
-  )
-end
-
-[
-  ['bbbbruno69', 'bbbbruno@example.com', 'simsimsim', 'simsimsim'],
-  ['ichigo', 'ichigo@example.com', 'ichigo', 'ichigo'],
-  ['macmac', 'macmac@example.com', 'macmac', 'macmac'],
-  ['strongzero', 'strong@example.com', 'strong', 'strong']
+  ['bbbbruno69', 'bbbbruno@gmail.com', 'simsimsim', 'simsimsim'],
+  ['ichigo', 'ichigo@gmail.com', 'ichigo', 'ichigo'],
+  ['macmac', 'macmac@gmail.com', 'macmac', 'macmac'],
+  ['strongzero', 'strong@gmail.com', 'strong', 'strong']
 ].each do |username, email, password, password_confirmation|
   User.create!(
     username: username,
@@ -60,3 +36,38 @@ User.find_by(username: 'strongzero').profile.update(
   さあ！君も一緒に飲んでみないかい？？
   TEXT
 )
+
+user = User.first
+[
+  ['四月は君の嘘', 'ピアニストの少年とバイオリニストの少女による音楽と青春の話', ''],
+  ['some title', 'some memo', ''],
+  ['ちはやふる', '熱血競技かるた漫画', '末次由紀'],
+  ['RubyとRailsの学習ガイド', 'Rails関連技術地図とそれらの学習資料の紹介', '五十嵐邦明']
+].each do |title, memo, author|
+  user.books.create!(
+    title: title,
+    memo: memo,
+    author: author,
+  )
+end
+
+2.upto(4) do |i|
+  user = User.find(i)
+  32.times do
+    title = Faker::Lorem.sentence(word_count: 1)
+    memo = Faker::Lorem.sentence(word_count: 5)
+    author = Faker::Name.name
+    user.books.create!(
+      title: title,
+      memo: memo,
+      author: author,
+    )
+  end
+end
+
+users = User.all
+user = users.first
+following = users[1..3]
+followers = users[2, 3]
+following.each { |followed| user.follow!(followed) }
+followers.each { |follower| follower.follow!(user) }

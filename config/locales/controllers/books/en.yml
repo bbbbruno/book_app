@@ -1,0 +1,4 @@
+en:
+  books:
+    alert:
+      authenticate: Unauthorized access.

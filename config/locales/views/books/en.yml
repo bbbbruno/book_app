@@ -1,0 +1,10 @@
+en:
+  books:
+    index:
+      title: "%{user} All Books"
+    new:
+      title: New Book
+    show:
+      title: Show Book
+    edit:
+      title: Edit Book

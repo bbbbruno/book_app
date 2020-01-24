@@ -4,11 +4,8 @@ class ProfilesController < ApplicationController
   before_action :set_profile, except: :index
   before_action :authenticate_profile, only: %i[edit update]
 
-  def index
-    @profiles = Profile.recent
-  end
-
   def show
+    @user = @profile.user
   end
 
   def edit
@@ -28,10 +25,10 @@ class ProfilesController < ApplicationController
     end
 
     def profile_params
-      params.require(:profile).permit(:name, :zipcode, :address, :self_introduction)
+      params.require(:profile).permit(:name, :zipcode, :address, :self_introduction, :avatar)
     end
 
     def authenticate_profile
-      redirect_to @profile, alert: '他のユーザーのプロフィールは編集できません。' unless @profile.user.id == current_user.id
+      redirect_to @profile, alert: t('dictionary.alert.authenticate') unless @profile.user == current_user
     end
 end

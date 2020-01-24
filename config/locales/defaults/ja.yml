@@ -6,6 +6,9 @@ ja:
       edit: 編集
       destroy: 削除
       back: 戻る
+      link: リンク
+    alert:
+      authenticate: 不正なアクセスです。
   flash:
     new: 保存しました！
     update: 更新しました！

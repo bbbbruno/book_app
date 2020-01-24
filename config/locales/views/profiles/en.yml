@@ -1,8 +1,8 @@
 en:
   profiles:
-    index:
-      title: All Users
     show:
       title: Profile
+      follow: Follow
+      unfollow: Unfollow
     edit:
       title: Edit Profile
