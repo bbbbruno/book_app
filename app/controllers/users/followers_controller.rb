@@ -3,6 +3,11 @@
 class Users::FollowersController < ApplicationController
   def index
     @user  = User.find(params[:user_id])
-    @users = @user.followers.recent.page(params[:page])
+    @users =
+      @user
+        .followers
+        .includes(profile: { avatar_attachment: :blob })
+        .recent
+        .page(params[:page])
   end
 end

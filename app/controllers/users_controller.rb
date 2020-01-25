@@ -2,6 +2,10 @@
 
 class UsersController < ApplicationController
   def index
-    @users = User.recent.page(params[:page])
+    @users =
+      User
+        .includes(profile: { avatar_attachment: :blob })
+        .recent
+        .page(params[:page])
   end
 end
