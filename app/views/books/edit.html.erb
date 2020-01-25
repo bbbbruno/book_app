@@ -1,6 +1,6 @@
 <h1><%= t '.title' %></h1>
 
-<%= render 'form', { user: @user, book: @book } %>
+<%= render 'form', book: @book %>
 
-<%= link_to t('dictionary.button.show'), user_book_path(@user, @book) %> |
+<%= link_to t('dictionary.button.show'), @book %> |
 <%= link_to t('dictionary.button.back'), :back %>

@@ -8,8 +8,6 @@ Rails.application.routes.draw do
   devise_for :users, only: :omniauth_callbacks, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   scope '(:locale)', locale: /#{I18n.available_locales.map(&:to_s).join('|')}/ do
-    get '/home', to: 'home#index', as: :home
-
     devise_scope :user do
       root to: 'devise/sessions#new'
     end
@@ -18,9 +16,8 @@ Rails.application.routes.draw do
       registrations: 'users/registrations',
     }
 
-    resources :users do
-      resources :books
-
+    resources :users, only: :index do
+      resources :books, only: :index, controller: 'users/books'
       resources :followings, only: :index, controller: 'users/followings'
       resources :followers, only: :index, controller: 'users/followers'
     end
@@ -28,6 +25,8 @@ Rails.application.routes.draw do
     resources :profiles, only: %i[show edit update]
 
     resources :follows, only: %i[create destroy]
+
+    resources :books
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

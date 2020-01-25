@@ -5,3 +5,6 @@
     <%= render 'users/user', user: user %>
   <% end %>
 </ul>
+
+<%= paginate @users %>
+<div class="paginate-info"><%= page_entries_info @users %></div>

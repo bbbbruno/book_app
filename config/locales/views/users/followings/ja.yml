@@ -1,0 +1,5 @@
+ja:
+  users:
+    followings:
+      index:
+        title: '%{user} がフォロー中のユーザー一覧'
