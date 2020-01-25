@@ -2,4 +2,4 @@ ja:
   users:
     followings:
       index:
-        title: "%{user} がフォロー中のユーザー一覧"
+        title: '%{user} がフォロー中のユーザー一覧'

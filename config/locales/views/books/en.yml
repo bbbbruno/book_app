@@ -1,7 +1,7 @@
 en:
   books:
     index:
-      title: "All Books"
+      title: 'All Books'
     new:
       title: New Book
     show:

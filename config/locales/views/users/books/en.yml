@@ -2,4 +2,4 @@ en:
   users:
     books:
       index:
-        title: "%{user} All Books"
+        title: '%{user} All Books'

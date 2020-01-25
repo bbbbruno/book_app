@@ -2,4 +2,4 @@ ja:
   users:
     followers:
       index:
-        title: "%{user} のフォロワー一覧"
+        title: '%{user} のフォロワー一覧'

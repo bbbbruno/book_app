@@ -2,4 +2,4 @@ en:
   users:
     followers:
       index:
-        title: "%{user} All Followers"
+        title: '%{user} All Followers'
