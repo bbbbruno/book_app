@@ -4,7 +4,7 @@ class Report < ApplicationRecord
   include Order
 
   belongs_to :user
-  include Commentable
+  has_many :comments, as: :commentable
 
   validates :title, presence: true
 end

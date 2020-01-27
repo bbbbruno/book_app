@@ -1,5 +1,5 @@
 <% comments.each do |comment| %>
-  <div class="row mb-4" id="comment" data-comment="<%= comment.id %>">
+  <div class="comment row mb-4" id="comment" data-comment="<%= comment.id %>">
     <div class="col-md-1 text-center mb-2 p-0">
       <%= link_to image_tag(comment.user.profile.profile_avatar(:md), style: 'border-radius: 50%;'), comment.user.profile %>
     </div>
@@ -8,7 +8,7 @@
       <div class="card">
         <div class="card-header py-2">
           <small>
-            <%= link_to comment.user.username, comment.user.profile, class: 'mr-1' %>
+            <%= link_to comment.user.username, comment.user.profile, class: 'mr-1 link-underline' %>
             <span class="text-muted"><%= l comment.created_at %></span>
           </small>
         </div>

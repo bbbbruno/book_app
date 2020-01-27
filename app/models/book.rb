@@ -5,7 +5,7 @@ class Book < ApplicationRecord
 
   belongs_to :user
   has_one_attached :picture
-  include Commentable
+  has_many :comments, as: :commentable
 
   validates :title, presence: true
 end
