@@ -14,7 +14,7 @@
         </div>
 
         <div class="card-body px-3 pt-3 pb-0 mb-0">
-          <div class="card-text"><%= simple_format h comment.content %></div>
+          <div class="card-text"><%= markdown(comment.content) %></div>
         </div>
 
         <% if comment.user == current_user %>
