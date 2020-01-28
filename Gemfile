@@ -43,6 +43,8 @@ gem 'devise-i18n'
 
 gem 'omniauth-github'
 
+gem 'minitest-ci'
+
 # markdownに対応
 gem 'redcarpet'
 gem 'coderay'

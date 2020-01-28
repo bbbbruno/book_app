@@ -64,6 +64,7 @@ jobs:
     executor: default
     environment:
       RAILS_ENV: test
+    parallelism: 3
     steps:
       - checkout
       - setup
@@ -78,8 +79,12 @@ jobs:
       - run:
           name: Rails Test
           command: |
-            bin/rails test
-            bin/rails test:system
+            TESTFILES=$(circleci tests glob "test/*/*.rb" | circleci tests split --split-by=timings)
+            bin/rails test ${TESTFILES}
+          when: always
+
+      - store_test_results:
+          path: test/reports
 
   deploy:
     executor: default
