@@ -1,0 +1,9 @@
+one:
+  content: この本は嫌い
+  commentable: one (Book)
+  user: one
+
+two:
+  content: 今日はいい天気でしたね
+  commentable: one (Report)
+  user: one

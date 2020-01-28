@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'
+Dir[File.dirname(__FILE__) + '/supports/**/*.rb'].each { |f| require f }
 
 class ActiveSupport::TestCase
   # Run tests in parallel with specified workers
@@ -10,5 +13,8 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  # include FactoryBot::Syntax::Methods
   include Warden::Test::Helpers
+
+  include WaitForCss
 end
