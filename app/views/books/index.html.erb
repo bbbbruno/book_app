@@ -17,7 +17,7 @@
       <% @books.each do |book| %>
         <tr>
           <td>
-            <%= link_to image_tag(book.user.profile.profile_avatar(:sm), style: 'border-radius: 50%;'), profile_path(book.user) %>
+            <%= link_to image_tag(user_avatar(user: book.user), style: 'border-radius: 50%;'), profile_path(book.user) %>
           </td>
           <td><%= book.title %></td>
           <td><%= book.memo %></td>

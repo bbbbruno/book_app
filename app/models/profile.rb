@@ -9,7 +9,7 @@ class Profile < ApplicationRecord
   validates :user_id, uniqueness: true
   validates :zipcode, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, allow_blank: true }, on: :update
 
-  def profile_avatar(size)
+  def resized_avatar(size)
     resize =
       case size
       when :sm
@@ -18,6 +18,8 @@ class Profile < ApplicationRecord
         [70, 70]
       when :lg
         [200, 200]
+      else
+        size
       end
     self.avatar.variant(resize_to_fill: resize)
   end
