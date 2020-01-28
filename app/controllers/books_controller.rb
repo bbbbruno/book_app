@@ -7,8 +7,13 @@ class BooksController < ApplicationController
   def index
     @books =
       Book
+        .includes(:picture_attachment, user: { profile: { avatar_attachment: :blob } })
         .where(user: current_user.followings)
-        .or(Book.where(user: current_user))
+        .or(
+          Book
+            .includes(:picture_attachment, user: { profile: { avatar_attachment: :blob } })
+            .where(user: current_user)
+        )
         .recent
         .page(params[:page])
   end

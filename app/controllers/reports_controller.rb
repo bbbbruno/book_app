@@ -7,6 +7,7 @@ class ReportsController < ApplicationController
   def index
     @reports =
       Report
+        .includes(user: { profile: { avatar_attachment: :blob } })
         .recent
         .page(params[:page])
   end
