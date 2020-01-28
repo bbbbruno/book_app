@@ -1,6 +1,6 @@
 <div class="report row mb-3">
   <div class="col-md-1 text-center mb-2 p-0">
-    <%= link_to image_tag(@report.user.profile.profile_avatar(:md), style: 'border-radius: 50%;'), @report.user.profile %>
+    <%= link_to image_tag(user_avatar(user: @report.user, size: :md), style: 'border-radius: 50%;'), @report.user.profile %>
   </div>
   <div class="col-md-11 pl-4">
     <div class="card">

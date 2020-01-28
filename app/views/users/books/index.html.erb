@@ -1,5 +1,5 @@
 <h1>
-  <%= link_to image_tag(@user.profile.profile_avatar(:sm), class: 'mr-2', style: 'border-radius: 50%;'), @user.profile %>
+  <%= link_to image_tag(@user.resized_avatar(:sm), class: 'mr-2', style: 'border-radius: 50%;'), @user.profile %>
   <%= t '.title', user: @user.username %>
 </h1>
 

@@ -26,6 +26,8 @@ class User < ApplicationRecord
 
   validates :username, presence: true, uniqueness: true, length: { maximum: 10 }, format: { with: /\A[\w@-]*[A-Za-z][\w@-]*\z/, message: 'に使える文字は半角英数字と@-のみです。必ず英字を１文字以上入力してください。' }
 
+  delegate_missing_to :profile
+
   def self.find_for_github_oauth(auth, signed_in_resource = nil)
     where(provider: auth.provider, uid: auth.uid).first_or_create! do |user|
       user.username = auth.info.name

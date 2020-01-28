@@ -5,7 +5,7 @@
     <% @reports.each do |report| %>
       <li class="list-group-item d-flex justify-content-between">
         <div class="d-flex">
-          <%= link_to image_tag(report.user.profile.profile_avatar(:sm), style: 'border-radius: 50%'), @user.profile %>
+          <%= link_to image_tag(user_avatar(user: report.user), style: 'border-radius: 50%'), @user.profile %>
           <div class="texts ml-3">
             <p class="mb-0">
               <%= link_to report.title, report, class: 'text-dark link' %>

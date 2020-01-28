@@ -1,4 +1,4 @@
 <li class="h4 py-1">
-  <%= image_tag user.profile.profile_avatar(:sm), style: 'border-radius: 50%;' %>
+  <%= image_tag user.resized_avatar(:sm), style: 'border-radius: 50%;' %>
   <%= link_to user.username, profile_path(user) %>
 </li>

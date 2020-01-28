@@ -1,7 +1,7 @@
 <% comments.each do |comment| %>
   <div class="comment row mb-4" id="comment" data-comment="<%= comment.id %>">
     <div class="col-md-1 text-center mb-2 p-0">
-      <%= link_to image_tag(comment.user.profile.profile_avatar(:md), style: 'border-radius: 50%;'), comment.user.profile %>
+      <%= link_to image_tag(user_avatar(user: comment.user, size: :md), style: 'border-radius: 50%;'), comment.user.profile %>
     </div>
 
     <div class="col-md-11 pl-4 pr-0">
