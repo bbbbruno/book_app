@@ -1,0 +1,25 @@
+<div class="report row mb-3">
+  <div class="col-md-1 text-center mb-2 p-0">
+    <%= link_to image_tag(@report.user.profile.profile_avatar(:md), style: 'border-radius: 50%;'), @report.user.profile %>
+  </div>
+  <div class="col-md-11 pl-4">
+    <div class="card">
+      <div class="card-header py-2">
+        <small>
+          <%= link_to @report.user.username, @report.user.profile, class: 'mr-1 link-underline' %>
+          <span class="text-muted"><%= l @report.date %> <%= t '.title' %></span>
+        </small>
+      </div>
+      <div class="card-body">
+        <h1 class="card-title border-bottom pb-1 h2"><%= @report.title %></h1>
+        <p class="card-text"><%= simple_format h @report.content %></p>
+      </div>
+    </div>
+  </div>
+</div>
+<% if current_user == @report.user %>
+  <%= link_to t('dictionary.button.edit'), edit_report_path(@report) %> |
+<% end %>
+<%= link_to t('dictionary.button.back'), user_reports_path(@report.user) %>
+
+<%= render 'comments/comments', commentable: @report, comment: current_user.comments.build %>

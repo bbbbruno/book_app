@@ -1,7 +1,13 @@
 @import '~bootstrap/scss/bootstrap';
+@import 'reports';
+@import 'comments';
 
 h1 {
   margin-bottom: 1rem;
+}
+
+img {
+  max-width: 100%;
 }
 
 table {

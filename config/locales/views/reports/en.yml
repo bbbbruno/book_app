@@ -1,0 +1,10 @@
+en:
+  reports:
+    index:
+      title: All Reports
+    new:
+      title: New Report
+    edit:
+      title: Edit Report
+    show:
+      title: report

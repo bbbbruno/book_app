@@ -1,0 +1,16 @@
+<div class="mb-5">
+  <h3 class="mt-5 mb-4"><%= t 'comments.all'%></h3>
+  <div id='comment_area'>
+    <%= render 'comments/comment', comments: commentable.comments.includes(user: { profile: { avatar_attachment: :blob } }).former %>
+  </div>
+</div>
+
+<div id="flash_messages">
+</div>
+
+<div class="mb-4">
+  <h3 class="mb-4"><%= t 'comments.post' %></h3>
+  <div id="comment_form" class="row">
+    <%= render 'comments/form', commentable: commentable, comment: comment %>
+  </div>
+</div>

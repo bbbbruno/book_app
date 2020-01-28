@@ -12,6 +12,8 @@ class User < ApplicationRecord
   after_create { self.create_profile! }
 
   has_many :books, dependent: :destroy
+  has_many :reports, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   has_many :active_follows, class_name: 'Follow',
                                   foreign_key: 'following_id',

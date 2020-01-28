@@ -1,0 +1,17 @@
+@mixin card-link {
+  .card {
+
+    a.link-underline {
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  pre {
+    padding: 1em;
+    background-color: #EFEFEF;
+  }
+}

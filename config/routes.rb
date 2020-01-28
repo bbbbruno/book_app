@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
     resources :users, only: :index do
       resources :books, only: :index, controller: 'users/books'
+      resources :reports, only: :index, controller: 'users/reports'
       resources :followings, only: :index, controller: 'users/followings'
       resources :followers, only: :index, controller: 'users/followers'
     end
@@ -26,7 +27,13 @@ Rails.application.routes.draw do
 
     resources :follows, only: %i[create destroy]
 
-    resources :books
+    resources :books do
+      resources :comments, only: %i[create edit update destroy], module: :books
+    end
+
+    resources :reports do
+      resources :comments, only: %i[create edit update destroy], module: :reports
+    end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

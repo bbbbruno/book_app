@@ -1,0 +1,5 @@
+@import 'mixin';
+
+.comment {
+  @include card-link;
+}

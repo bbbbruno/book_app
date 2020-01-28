@@ -1,0 +1,5 @@
+$('#comment[data-comment="' + <%= @comment.id %> + '"]').html("<%= j(render 'form', commentable: @commentable, comment: @comment) %>");
+
+<% flash.each do |type, message| %>
+  $('#flash_messages').html('<div class="alert alert-<%= type %> mt-3"><%= message %></div>');
+<% end %>
