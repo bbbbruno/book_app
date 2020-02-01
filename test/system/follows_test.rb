@@ -15,19 +15,15 @@ class FollowsTest < ApplicationSystemTestCase
   test 'create follows relationships' do
     visit profile_path(id: @user2.id)
 
-    assert_difference 'Follow.count', 1 do
-      click_on I18n.t('profiles.show.follow')
-      wait_for_css_appear('#unfollow_btn')
-    end
+    click_on I18n.t('profiles.show.follow')
+    assert_selector '#unfollow_btn'
   end
 
   test 'destroy follows relationships' do
     @user1.follow!(@user2)
     visit profile_path(id: @user2.id)
 
-    assert_difference 'Follow.count', -1 do
-      click_on I18n.t('profiles.show.unfollow')
-      wait_for_css_appear('#follow_btn')
-    end
+    click_on I18n.t('profiles.show.unfollow')
+    assert_selector '#follow_btn'
   end
 end
