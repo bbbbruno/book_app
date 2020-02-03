@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'application_system_test_case'
+require "application_system_test_case"
 
 class Users::FollowingsTest < ApplicationSystemTestCase
   setup do
@@ -11,9 +11,9 @@ class Users::FollowingsTest < ApplicationSystemTestCase
     login_as @user
   end
 
-  test 'show listing user followings' do
+  test "show listing user followings" do
     visit user_followings_path(user_id: @user.id)
 
-    assert_text I18n.t('users.followings.index.title', user: @user.username)
+    assert_text I18n.t("users.followings.index.title", user: @user.username)
   end
 end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'application_system_test_case'
+require "application_system_test_case"
 
 class UsersTest < ApplicationSystemTestCase
   setup do
@@ -11,9 +11,9 @@ class UsersTest < ApplicationSystemTestCase
     login_as @user
   end
 
-  test 'show listing users' do
+  test "show listing users" do
     visit users_path
 
-    assert_selector 'h1', text: I18n.t('users.index.title')
+    assert_selector "h1", text: I18n.t("users.index.title")
   end
 end
