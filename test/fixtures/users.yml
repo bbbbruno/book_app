@@ -1,6 +1,13 @@
 one:
   username: test
   email: test@gmail.com
+  uid: 123456
+  provider: github
+  confirmed_at: <%= Time.current %>
+
+two:
+  username: sample
+  email: sample@gmail.com
   uid: 112233
-  provider: ""
+  provider: ''
   confirmed_at: <%= Time.current %>

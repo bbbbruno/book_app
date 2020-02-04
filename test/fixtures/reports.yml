@@ -1,0 +1,5 @@
+one:
+  title: 壁外調査結果
+  date: <%= 1.week.ago %>
+  content: 何の成果も得られませんでしたー！！
+  user: one

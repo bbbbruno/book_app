@@ -1,4 +1,4 @@
 <%= form_with(model: current_user.active_follows.build(followed_id: user.id)) do |f| %>
   <%= f.hidden_field :followed_id %>
-  <%= f.submit t('profiles.show.follow'), class: 'btn btn-primary' %>
+  <%= f.submit t('profiles.show.follow'), class: 'btn btn-primary', id: 'follow_btn' %>
 <% end %>
